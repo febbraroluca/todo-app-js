@@ -1,0 +1,24 @@
+h1,
+h2 {
+  font-family: Lato;
+}
+
+.btn-right {
+  display: inline-block;
+  margin-left: 50%;
+  color: red;
+}
+
+.todoListUl {
+}
+
+.span-todoList-el {
+  display: inline-block;
+  width: 40%;
+}
+
+.todoListItem {
+  padding: 5px;
+  width: 90%;
+  border-bottom: 1px solid black;
+}

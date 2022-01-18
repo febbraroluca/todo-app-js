@@ -1,0 +1,29 @@
+{
+  "name": "todoapppackage",
+  "version": "1.0.0",
+  "description": "todo app in vanilla js",
+  "main": "index.js",
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/febbraroluca/todo-app-vanilla-js.git"
+  },
+  "keywords": [
+    "todo",
+    "app",
+    "vanilla",
+    "js"
+  ],
+  "author": "Luca Febbraro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/febbraroluca/todo-app-vanilla-js/issues"
+  },
+  "homepage": "https://github.com/febbraroluca/todo-app-vanilla-js#readme"
+}
