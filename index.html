@@ -8,23 +8,36 @@
       crossorigin="anonymous"
     />
     <link href="./style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="header">
-      <h1>Todo List App</h1>
-      <h2>Inserisci la nuova attività da svolgere</h2>
-    </div>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">Todo List App</div>
+        <div class="card-body">
+          <h5 class="card-title">Inserisci la nuova attività da svolgere</h5>
 
-    <div>
-      <input
-        id="addTodoInput"
-        type="text"
-        placeholder="inserisci la nuova attività"
-      />
-      <button id="addTodoBtn">Aggiungi Attività</button>
-    </div>
+          <div>
+            <input
+              id="addTodoInput"
+              type="text"
+              placeholder="inserisci la nuova attività"
+            />
+            <button id="addTodoBtn">Aggiungi Attività</button>
+          </div>
 
-    <div class="todoList"></div>
+          <div>
+            <input
+              id="searchActivityInput"
+              type="text"
+              placeholder="inserisci l'attività da cercare'"
+            />
+          </div>
+
+          <div class="todoList"></div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
     <script

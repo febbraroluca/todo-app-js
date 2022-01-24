@@ -23,17 +23,28 @@ const todoList = document.createElement("ul");
 todoList.classList.add("todoListUl");
 let newTodo;
 
-let todos = retrieveTodos();
+let todos = [];
+let filteredTodos = [];
+todos = retrieveTodos();
+
+let filters = {
+  searchText: "",
+};
 
 renderTodos(todos);
 
 addTodoInput.addEventListener("input", function (e) {
-  console.log(e.target.value);
   newTodo = {
     id: uuidv4(),
     activity: e.target.value,
     completed: false,
   };
+});
+
+searchActivityInput.addEventListener("input", function (e) {
+  setFilters(filters, e.target.value);
+  filteredTodos = getFilteredTodos(filters, todos, filteredTodos);
+  renderTodos(filteredTodos);
 });
 
 addTodoBtn.addEventListener("click", function (e) {
@@ -43,5 +54,4 @@ addTodoBtn.addEventListener("click", function (e) {
     saveTodos(todos);
     newTodo = undefined;
   }
-  console.log(e);
 });
