@@ -12,6 +12,12 @@ const saveTodos = (todos) => {
   localStorage.setItem("todoList", convertedTodos);
 };
 
+const editTodo = (todoToEdit) => {
+  console.log("selected todo to edit", todoToEdit);
+  localStorage.setItem("todoToEdit", JSON.stringify(todoToEdit));
+  location.href = `editTodo.html`;
+};
+
 const deleteTodo = (todoToDelete) => {
   const todoIndexToDelete = -1;
 
@@ -29,9 +35,13 @@ const deleteTodo = (todoToDelete) => {
 };
 
 const renderTodos = (todos) => {
-  todoList.innerHTML = "";
   const mainEl = document.querySelector(".todoList");
-  mainEl.appendChild(todoList);
+  mainEl.innerHTML = "";
+
+  const todoListUlItem = document.createElement("ul");
+  todoListUlItem.classList.add("todoListUl");
+
+  mainEl.appendChild(todoListUlItem);
 
   todos.forEach((todo) => {
     const todoEl = document.createElement("li");
@@ -50,7 +60,6 @@ const renderTodos = (todos) => {
     actionBtns.classList.add("actions-buttons");
     const delTodoBtn = document.createElement("button");
     const editTodoBtn = document.createElement("button");
-    //delTodoBtn.innerHTML = " X";
     delTodoBtn.classList.add("btn", "btn-danger", "btn-inline");
     editTodoBtn.classList.add("btn", "btn-primary", "btn-inline", "ml-5");
     const trashIcon = document.createElement("i");
@@ -67,8 +76,9 @@ const renderTodos = (todos) => {
     todoEl.appendChild(actionBtns);
 
     spanEl.textContent = todo.activity;
-    todoList.appendChild(todoEl);
+    todoListUlItem.appendChild(todoEl);
 
+    editTodoBtn.addEventListener("click", () => editTodo(todo));
     delTodoBtn.addEventListener("click", () => deleteTodo(todo));
   });
 };
@@ -95,4 +105,37 @@ const getFilteredTodos = (filtersInput, todolist, filteredToDolIst) => {
     });
     return filteredToDolIst;
   } else return todolist;
+};
+
+const getEditedTodo = () => {
+  const editedTodo = localStorage.getItem("todoToEdit");
+  if (editedTodo) {
+    return JSON.parse(editedTodo);
+  } else {
+    return null;
+  }
+};
+
+const fillFormFields = (todoToRender) => {
+  const activityDescriptionField = document.querySelector(
+    "#editTodoActivityField"
+  );
+  const isActivityDoneChkboxField = document.querySelector(
+    "#isActivityDoneChkbox"
+  );
+  activityDescriptionField.value = todoToRender.activity;
+  isActivityDoneChkboxField.checked = todoToRender.completed;
+};
+
+const updateTodos = (todos, todoToUpdate) => {
+  const indexOfEditedTodo = todos.findIndex(
+    (todo) => todo.id === todoToUpdate.id
+  );
+  if (indexOfEditedTodo !== -1) {
+    todos[indexOfEditedTodo].activity = todoToUpdate.activity;
+    todos[indexOfEditedTodo].completed = todoToUpdate.completed;
+  }
+
+  saveTodos(todos);
+  renderTodos();
 };

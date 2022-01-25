@@ -19,8 +19,6 @@
 console.log("sto leggendo dal file index.js  ");
 
 const addTodoBtn = document.querySelector("#addTodoBtn");
-const todoList = document.createElement("ul");
-todoList.classList.add("todoListUl");
 let newTodo;
 
 let todos = [];
