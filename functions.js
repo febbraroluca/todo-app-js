@@ -50,6 +50,7 @@ const renderTodos = (todos) => {
     const checkboxActivityDone = document.createElement("input");
     checkboxActivityDone.setAttribute("type", "checkbox");
     checkboxActivityDone.classList.add("chkbActivityDone");
+    checkboxActivityDone.checked = todo.completed;
     todoEl.appendChild(checkboxActivityDone);
 
     const spanEl = document.createElement("span");
@@ -80,6 +81,12 @@ const renderTodos = (todos) => {
 
     editTodoBtn.addEventListener("click", () => editTodo(todo));
     delTodoBtn.addEventListener("click", () => deleteTodo(todo));
+    checkboxActivityDone.addEventListener("change",(e)=> {
+        const todoChangedIndex = todos.findIndex(changedTodo => changedTodo.id === todo.id);
+        todos[todoChangedIndex].completed = e.target.checked;
+        saveTodos(todos);
+        console.log(e.target.checked,todoChangedIndex,todo)
+    })
   });
 };
 
@@ -137,5 +144,5 @@ const updateTodos = (todos, todoToUpdate) => {
   }
 
   saveTodos(todos);
-  renderTodos();
+  //renderTodos();
 };

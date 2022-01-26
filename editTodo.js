@@ -19,9 +19,9 @@ chkActivityDone.addEventListener("change", (e) => {
 
 btnSubmit.addEventListener("click", (e) => {
   e.preventDefault();
+  editTodo(editedTodo);
   updateTodos(todos, editedTodo);
   editedTodo = getEditedTodo();
-  console.log("edited todo dopo l update", editedTodo);
   fillFormFields(editedTodo);
 });
 
